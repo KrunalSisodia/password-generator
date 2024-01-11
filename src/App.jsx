@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState, useCallback } from "react";
+import "./assets/App.css";
 
 function App() {
   const [length, setLength] = useState(8);
@@ -34,25 +35,23 @@ function App() {
   }, [length, number, specialChar, passwordGenerator]);
   return (
     <>
-      <div className="w-full max-w-md mx-auto shadow-md rounded-lg px-4 my-8 text-orange-500 bg-gray-700">
-        <h1 className="text-white text-center">
-          Your personal passwqord generator
+      <div className="container">
+        <h1 className="text-3xl">
+          Generate a <span className="strong">Strong</span> <br />
+          Random Password
         </h1>
-        <div className="flex shadow rounded-lg mb-4">
+        <hr />
+        <div className="passw-box mb-6">
           <input
             type="text"
             value={password}
-            className="outline-none w-full py-1 mx-1 rounded-md"
+            className="outline-none text-black w-full py-1 mx-1 rounded-md"
             placeholder="Your password"
             readOnly
             ref={passRef}
           />
-          <button
-            className="bg-blue-400 text-white"
-            onClick={copyPassToClipboard}
-          >
-            Copy
-          </button>
+        </div>
+        <div className="flex content-between gap-3">
           <input
             type="range"
             min={6}
@@ -64,8 +63,6 @@ function App() {
             }}
           />
           <label>Length: {length}</label>
-        </div>
-        <div>
           <input
             type="checkbox"
             defaultChecked={number}
@@ -85,6 +82,12 @@ function App() {
           />
           <label htmlFor="charInput">Characters</label>
         </div>
+        <button
+          className="button-box flex justify-center"
+          onClick={copyPassToClipboard}
+        >
+          <p>Copy Password</p>
+        </button>
       </div>
     </>
   );
